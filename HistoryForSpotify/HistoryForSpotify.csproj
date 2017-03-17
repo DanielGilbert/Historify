@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -94,6 +94,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HistoryForSpotify.Commons\HistoryForSpotify.Commons.csproj">
+      <Project>{9f43ff4e-c7ca-415a-9e13-1f76a2be69af}</Project>
+      <Name>HistoryForSpotify.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HistoryForSpotify.Core\HistoryForSpotify.Core.csproj">
+      <Project>{111de607-1b63-4df9-aed8-18f0337960a6}</Project>
+      <Name>HistoryForSpotify.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
