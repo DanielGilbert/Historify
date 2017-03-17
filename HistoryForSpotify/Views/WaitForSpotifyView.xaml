@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="HistoryForSpotify.Views.WaitForSpotifyView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HistoryForSpotify.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"                     
+                     Value="0"
+                     IsIndeterminate="True"
+                     Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12 12 12 12" />
+        <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" TextWrapping="Wrap">Waiting for Spotify...</TextBlock>
+    </Grid>
+</UserControl>

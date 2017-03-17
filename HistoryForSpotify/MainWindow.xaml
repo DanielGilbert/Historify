@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HistoryForSpotify"
+        xmlns:views="clr-namespace:HistoryForSpotify.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525"
+        Title="History For Spotify" Height="350" Width="525"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -15,19 +16,13 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <!--<materialDesign:Card Padding="32" Margin="16">
-            <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">My First Material Design App</TextBlock>
-        </materialDesign:Card>-->
-        <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"                     
-                     Value="0"
-                     IsIndeterminate="True"
-                     Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12 12 12 12" />
-        <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" TextWrapping="Wrap">Waiting for Spotify...</TextBlock>
+        <materialDesign:Transitioner Grid.Row="0" SelectedIndex="0" AutoApplyTransitionOrigins="True">
+            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
+                <views:WaitForSpotifyView />
+            </materialDesign:TransitionerSlide>
+            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
+                <views:HistoryListView />
+            </materialDesign:TransitionerSlide>
+        </materialDesign:Transitioner>
     </Grid>
 </Window>
