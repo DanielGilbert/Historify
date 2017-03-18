@@ -26,8 +26,9 @@ namespace HistoryForSpotify.ViewModels
             }
         }
 
-        public ShellViewModel()
+        public ShellViewModel(ILog log)
         {
+            _log = log;
         }
     }
 }

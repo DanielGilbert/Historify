@@ -21,14 +21,9 @@ namespace HistoryForSpotify.Views
     /// </summary>
     public partial class WaitForSpotifyView : UserControl
     {
-        private WaitForSpotifyViewModel _waitForSpotifyViewModel;
-
         public WaitForSpotifyView()
         {
             InitializeComponent();
-
-            _waitForSpotifyViewModel = new WaitForSpotifyViewModel();
-            this.DataContext = _waitForSpotifyViewModel;
         }
     }
 }

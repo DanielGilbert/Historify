@@ -21,14 +21,9 @@ namespace HistoryForSpotify
     /// </summary>
     public partial class Shell : Window
     {
-        private ShellViewModel _mainWindowViewModel;
-
         public Shell()
         {
             InitializeComponent();
-
-            _mainWindowViewModel = new ShellViewModel();
-            DataContext = _mainWindowViewModel;
         }
     }
 }

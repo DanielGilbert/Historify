@@ -21,14 +21,9 @@ namespace HistoryForSpotify.Views
     /// </summary>
     public partial class HistoryListView : UserControl
     {
-        private HistoryListViewModel _historyListViewModel;
-
         public HistoryListView()
         {
             InitializeComponent();
-
-            _historyListViewModel = new HistoryListViewModel();
-            this.DataContext = _historyListViewModel;
         }
     }
 }
