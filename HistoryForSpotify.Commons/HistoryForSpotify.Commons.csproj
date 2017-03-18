@@ -49,6 +49,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Logging\Interfaces\ILog.cs" />
     <Compile Include="Models\Bookmark.cs" />
     <Compile Include="Models\BookmarkCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
