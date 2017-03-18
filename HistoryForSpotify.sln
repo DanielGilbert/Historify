@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HistoryForSpotify.Core", "H
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HistoryForSpotify.Commons", "HistoryForSpotify.Commons\HistoryForSpotify.Commons.csproj", "{9F43FF4E-C7CA-415A-9E13-1F76A2BE69AF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C671AA13-3F5A-49CB-A911-DB07C099105C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
