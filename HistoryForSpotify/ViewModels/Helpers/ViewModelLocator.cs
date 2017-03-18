@@ -45,9 +45,12 @@ namespace HistoryForSpotify.ViewModels.Helpers
 
         public ViewModelLocator()
         {
+            //Create Dependencies
             _log = LoggerFactory.GetLogger(@"D:\Log\");
             _audioService = new SpotifyAudioService(_log);
-            _shellViewModel = new ShellViewModel(_log);
+
+            //Inject them
+            _shellViewModel = new ShellViewModel(_log, _audioService);
             _historyListViewModel = new HistoryListViewModel(_log, _audioService);
             _waitForSpotifyViewModel = new WaitForSpotifyViewModel(_log);
         }

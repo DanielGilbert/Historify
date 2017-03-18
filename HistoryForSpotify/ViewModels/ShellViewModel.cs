@@ -1,4 +1,5 @@
 ﻿using HistoryForSpotify.Commons.Logging.Interfaces;
+using HistoryForSpotify.Core.AudioServices.Interfaces;
 using HistoryForSpotify.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace HistoryForSpotify.ViewModels
     {
         private int _selectedIndex;
         private ILog _log;
+        private IAudioService _audioService;
 
         public int SelectedIndex
         {
@@ -26,11 +28,25 @@ namespace HistoryForSpotify.ViewModels
             }
         }
 
-        public ShellViewModel(ILog log)
+        public ShellViewModel(ILog log, IAudioService audioService)
         {
             _log = log;
+            _audioService = audioService;
+
+            _audioService.OnServiceConnected += OnServiceConnected;
+            _audioService.OnServiceDisconnected += OnServiceDisconnected;
 
             _log.Debug("Created ShellViewModel");
+        }
+
+        private void OnServiceDisconnected()
+        {
+            SelectedIndex = 0;
+        }
+
+        private void OnServiceConnected()
+        {
+            SelectedIndex = 1;
         }
     }
 }
