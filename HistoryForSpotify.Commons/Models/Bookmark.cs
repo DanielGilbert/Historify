@@ -25,6 +25,5 @@ namespace HistoryForSpotify.Commons.Models
         {
             Id = Guid.NewGuid();
         }
-
     }
 }

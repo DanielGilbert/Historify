@@ -63,6 +63,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\HistoryListViewModel.cs" />
+    <Compile Include="ViewModels\WaitForSpotifyViewModel.cs" />
     <Compile Include="Views\HistoryListView.xaml.cs">
       <DependentUpon>HistoryListView.xaml</DependentUpon>
     </Compile>
@@ -131,9 +133,7 @@
   <ItemGroup>
     <Resource Include="Resources\Chartridge046_small.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
