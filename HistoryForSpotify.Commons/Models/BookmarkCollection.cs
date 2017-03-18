@@ -18,7 +18,10 @@ namespace HistoryForSpotify.Commons.Models
 
         public void Add(Bookmark bookmark)
         {
-            throw new NotImplementedException();
+            if (Bookmarks == null)
+                throw new InvalidOperationException("Bookmarks are not initialized");
+
+            Bookmarks.Add(bookmark);
         }
 
         public void Delete(Bookmark bookmark)
