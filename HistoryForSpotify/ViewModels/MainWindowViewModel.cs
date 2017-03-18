@@ -25,9 +25,8 @@ namespace HistoryForSpotify.ViewModels
             }
         }
 
-        public MainWindowViewModel(ILog log)
+        public MainWindowViewModel()
         {
-            _log = log;
         }
     }
 }
