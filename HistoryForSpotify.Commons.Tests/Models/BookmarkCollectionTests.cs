@@ -11,6 +11,7 @@ namespace HistoryForSpotify.Commons.Tests.Models
     [TestFixture]
     public class BookmarkCollectionTests
     {
+        #region CRUD Tests
         [Test]
         public void AddSingleBookmarkTest()
         {
@@ -27,14 +28,16 @@ namespace HistoryForSpotify.Commons.Tests.Models
         {
             Assert.Catch(typeof(ArgumentNullException), AddNullBookmarktestDelegate);
         }
-
+        
         private void AddNullBookmarktestDelegate()
         {
             BookmarkCollection bookmarkCollection = new BookmarkCollection();
 
             bookmarkCollection.Add(null);
         }
+        #endregion
 
+        #region Null Tests
         [Test]
         public void CheckBookmarksInitialized()
         {
@@ -50,7 +53,9 @@ namespace HistoryForSpotify.Commons.Tests.Models
 
             Assert.NotNull(bookmarkCollection.TimeStamp);
         }
+        #endregion
 
+        #region Boundaries Tests
         [Test]
         public void CheckTimestampNotMinimum()
         {
@@ -66,5 +71,6 @@ namespace HistoryForSpotify.Commons.Tests.Models
 
             Assert.AreNotEqual(DateTime.MaxValue, bookmarkCollection.TimeStamp);
         }
+        #endregion
     }
 }
