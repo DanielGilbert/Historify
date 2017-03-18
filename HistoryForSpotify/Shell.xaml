@@ -15,9 +15,10 @@
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
+        d:DataContext="{Binding DesignShellViewModel, Source={StaticResource ViewModelLocator}}"
         DataContext="{Binding ShellViewModel, Source={StaticResource ViewModelLocator}}">
     <Grid>
-        <materialDesign:Transitioner Grid.Row="0" SelectedIndex="0" AutoApplyTransitionOrigins="True">
+        <materialDesign:Transitioner Grid.Row="0" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}" AutoApplyTransitionOrigins="True">
             <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
                 <views:WaitForSpotifyView />
             </materialDesign:TransitionerSlide>

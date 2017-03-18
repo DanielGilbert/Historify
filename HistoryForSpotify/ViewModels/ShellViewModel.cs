@@ -36,6 +36,8 @@ namespace HistoryForSpotify.ViewModels
             _audioService.OnServiceConnected += OnServiceConnected;
             _audioService.OnServiceDisconnected += OnServiceDisconnected;
 
+            _audioService.Connect();
+
             _log.Debug("Created ShellViewModel");
         }
 

@@ -2,12 +2,15 @@
 using HistoryForSpotify.Commons.Logging.Interfaces;
 using HistoryForSpotify.Core.AudioServices;
 using HistoryForSpotify.Core.AudioServices.Interfaces;
+using HistoryForSpotify.ViewModels.Dummies;
 using HistoryForSpotify.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace HistoryForSpotify.ViewModels.Helpers
 {
@@ -15,9 +18,15 @@ namespace HistoryForSpotify.ViewModels.Helpers
     {
         private ILog _log;
         private IAudioService _audioService;
+
         private IShellViewModel _shellViewModel;
         private IHistoryListViewModel _historyListViewModel;
         private IWaitForSpotifyViewModel _waitForSpotifyViewModel;
+
+        private IShellViewModel _designShellViewModel;
+        private IHistoryListViewModel _designHistoryListViewModel;
+        private IWaitForSpotifyViewModel _designWaitForSpotifyViewModel;
+
 
         public IShellViewModel ShellViewModel
         {
@@ -43,16 +52,55 @@ namespace HistoryForSpotify.ViewModels.Helpers
             }
         }
 
+        public IShellViewModel DesignShellViewModel
+        {
+            get
+            {
+                return _designShellViewModel;
+            }
+        }
+
+        public IHistoryListViewModel DesignHistoryListViewModel
+        {
+            get
+            {
+                return _designHistoryListViewModel;
+            }
+        }
+
+        public IWaitForSpotifyViewModel DesignWaitForSpotifyViewModel
+        {
+            get
+            {
+                return _designWaitForSpotifyViewModel;
+            }
+        }
+
         public ViewModelLocator()
         {
-            //Create Dependencies
-            _log = LoggerFactory.GetLogger(@"D:\Log\");
-            _audioService = new SpotifyAudioService(_log);
+            if (IsInDesignTime())
+            {
+                _designShellViewModel = new DummyShellViewModel();
+                _designHistoryListViewModel = new DummyHistoryListViewModel();
+                _designWaitForSpotifyViewModel = new DummyWaitForSpotifyViewModel();
+            }
+            else
+            {
 
-            //Inject them
-            _shellViewModel = new ShellViewModel(_log, _audioService);
-            _historyListViewModel = new HistoryListViewModel(_log, _audioService);
-            _waitForSpotifyViewModel = new WaitForSpotifyViewModel(_log);
+                //Create Dependencies
+                _log = LoggerFactory.GetLogger(@"D:\Log\");
+                _audioService = new SpotifyAudioService(_log);
+
+                //Inject them
+                _shellViewModel = new ShellViewModel(_log, _audioService);
+                _historyListViewModel = new HistoryListViewModel(_log, _audioService);
+                _waitForSpotifyViewModel = new WaitForSpotifyViewModel(_log);
+            }
+        }
+
+        private bool IsInDesignTime()
+        {
+           return DesignerProperties.GetIsInDesignMode(new DependencyObject());
         }
     }
 }

@@ -5,7 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HistoryForSpotify.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300"
+            d:DataContext="{Binding DesignWaitForSpotifyViewModel, Source={StaticResource ViewModelLocator}}"
+            DataContext="{Binding WaitForSpotifyViewModel, Source={StaticResource ViewModelLocator}}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
