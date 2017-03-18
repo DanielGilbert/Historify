@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HistoryForSpotify.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,14 @@ namespace HistoryForSpotify.Views
     /// </summary>
     public partial class WaitForSpotifyView : UserControl
     {
+        private WaitForSpotifyViewModel _waitForSpotifyViewModel;
+
         public WaitForSpotifyView()
         {
             InitializeComponent();
+
+            _waitForSpotifyViewModel = new WaitForSpotifyViewModel();
+            this.DataContext = _waitForSpotifyViewModel;
         }
     }
 }
