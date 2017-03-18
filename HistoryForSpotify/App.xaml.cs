@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HistoryForSpotify.Commons.Logging.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,14 @@ namespace HistoryForSpotify
     /// </summary>
     public partial class App : Application
     {
+        public static ILog Log;
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            //Initialize Logger;
+
+        }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HistoryForSpotify.ViewModels
 {
-    public class MainWindowViewModel : ViewModelBase
+    public class ShellViewModel : ViewModelBase
     {
         private int _selectedIndex;
         private ILog _log;
@@ -25,7 +25,7 @@ namespace HistoryForSpotify.ViewModels
             }
         }
 
-        public MainWindowViewModel()
+        public ShellViewModel()
         {
         }
     }
