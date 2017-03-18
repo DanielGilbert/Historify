@@ -34,5 +34,37 @@ namespace HistoryForSpotify.Commons.Tests.Models
 
             bookmarkCollection.Add(null);
         }
+
+        [Test]
+        public void CheckBookmarksInitialized()
+        {
+            BookmarkCollection bookmarkCollection = new BookmarkCollection();
+
+            Assert.NotNull(bookmarkCollection.Bookmarks);
+        }
+
+        [Test]
+        public void CheckTimestampInitialized()
+        {
+            BookmarkCollection bookmarkCollection = new BookmarkCollection();
+
+            Assert.NotNull(bookmarkCollection.TimeStamp);
+        }
+
+        [Test]
+        public void CheckTimestampNotMinimum()
+        {
+            BookmarkCollection bookmarkCollection = new BookmarkCollection();
+
+            Assert.AreNotEqual(DateTime.MinValue, bookmarkCollection.TimeStamp);
+        }
+
+        [Test]
+        public void CheckTimestampNotMaximum()
+        {
+            BookmarkCollection bookmarkCollection = new BookmarkCollection();
+
+            Assert.AreNotEqual(DateTime.MaxValue, bookmarkCollection.TimeStamp);
+        }
     }
 }
