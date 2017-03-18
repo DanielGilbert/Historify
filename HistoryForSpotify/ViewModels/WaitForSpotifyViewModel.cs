@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HistoryForSpotify.ViewModels
 {
-    public class WaitForSpotifyViewModel
+    public class WaitForSpotifyViewModel : ViewModelBase
     {
     }
 }
