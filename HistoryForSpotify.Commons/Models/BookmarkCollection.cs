@@ -8,7 +8,8 @@ namespace HistoryForSpotify.Commons.Models
 {
     public class BookmarkCollection
     {
-        public List<Bookmark> Bookmarks { get; set; }
+        public DateTime TimeStamp { get; }
+        public List<Bookmark> Bookmarks { get; }
 
         public BookmarkCollection()
         {
