@@ -1,4 +1,5 @@
-﻿using HistoryForSpotify.Commons.Logging.Interfaces;
+﻿using HistoryForSpotify.Commons.Logging.Factories;
+using HistoryForSpotify.Commons.Logging.Interfaces;
 using HistoryForSpotify.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,8 @@ namespace HistoryForSpotify.ViewModels.Helpers
     {
         private ILog _log;
         private IShellViewModel _shellViewModel;
+        private IHistoryListViewModel _historyListViewModel;
+        private IWaitForSpotifyViewModel _waitForSpotifyViewModel;
 
         public IShellViewModel ShellViewModel
         {
@@ -21,9 +24,29 @@ namespace HistoryForSpotify.ViewModels.Helpers
             }
         }
 
+        public IHistoryListViewModel HistoryListViewModel
+        {
+            get
+            {
+                return _historyListViewModel;
+            }
+        }
+
+        public IWaitForSpotifyViewModel WaitForSpotifyViewModel
+        {
+            get
+            {
+                return _waitForSpotifyViewModel;
+            }
+        }
+
         public ViewModelLocator()
         {
-            _shellViewModel = new ShellViewModel(null);
+            _log = LoggerFactory.GetLogger(@"D:\Log\");
+
+            _shellViewModel = new ShellViewModel(_log);
+            _historyListViewModel = new HistoryListViewModel(_log);
+            _waitForSpotifyViewModel = new WaitForSpotifyViewModel(_log);
         }
     }
 }

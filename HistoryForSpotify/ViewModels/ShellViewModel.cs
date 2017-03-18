@@ -29,6 +29,8 @@ namespace HistoryForSpotify.ViewModels
         public ShellViewModel(ILog log)
         {
             _log = log;
+
+            _log.Debug("Created ShellViewModel");
         }
     }
 }
