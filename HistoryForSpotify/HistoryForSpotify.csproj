@@ -69,7 +69,7 @@
     <Compile Include="ViewModels\Interfaces\IWaitForSpotifyViewModel.cs" />
     <Compile Include="ViewModels\Helpers\ViewModelLocator.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
-    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="ViewModels\Base\ViewModelBase.cs" />
     <Compile Include="ViewModels\WaitForSpotifyViewModel.cs" />
     <Compile Include="Views\HistoryListView.xaml.cs">
       <DependentUpon>HistoryListView.xaml</DependentUpon>
