@@ -19,11 +19,11 @@
                 <Button Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
                         HorizontalAlignment="Right" VerticalAlignment="Bottom"
                         Margin="0 0 16 -20">
-                    <materialDesign:PackIcon Kind="Bike" />
+                    <materialDesign:PackIcon Kind="Play" />
                 </Button>
                 <StackPanel Grid.Row="1" Margin="8 24 8 0" >
                     <TextBlock FontWeight="Bold">Cycling</TextBlock>
-                    <TextBlock TextWrapping="Wrap" VerticalAlignment="Center">A great way to keep fit and forget about the constant grind of IT.</TextBlock>
+                    <TextBlock TextWrapping="Wrap" VerticalAlignment="Center">kjhjlksg</TextBlock>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Right" Grid.Row="2" Orientation="Horizontal" Margin="8">
                     <Button Style="{StaticResource MaterialDesignToolButton}" Width="30" Padding="2 0 2 0"
