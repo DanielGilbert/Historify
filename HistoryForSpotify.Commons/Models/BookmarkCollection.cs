@@ -14,12 +14,16 @@ namespace HistoryForSpotify.Commons.Models
         public BookmarkCollection()
         {
             Bookmarks = new List<Bookmark>();
+            TimeStamp = DateTime.UtcNow;
         }
 
         public void Add(Bookmark bookmark)
         {
             if (Bookmarks == null)
                 throw new InvalidOperationException("Bookmarks are not initialized");
+
+            if (bookmark == null)
+                throw new ArgumentNullException(nameof(bookmark));
 
             Bookmarks.Add(bookmark);
         }
