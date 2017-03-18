@@ -1,4 +1,5 @@
 ﻿using HistoryForSpotify.Commons.Logging.Interfaces;
+using HistoryForSpotify.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HistoryForSpotify.ViewModels
 {
-    public class ShellViewModel : ViewModelBase
+    public class ShellViewModel : ViewModelBase, IShellViewModel
     {
         private int _selectedIndex;
         private ILog _log;
