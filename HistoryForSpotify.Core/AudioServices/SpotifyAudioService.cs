@@ -21,6 +21,9 @@ namespace HistoryForSpotify.Core.AudioServices
         private DateTime _lastSubmitTime;
         private double _differenceTime;
         private double _lastTrackTime;
+
+        private Track _currentTrack;
+
         public string Name
         {
             get
@@ -51,7 +54,6 @@ namespace HistoryForSpotify.Core.AudioServices
         {
             bool isRunning = false;
             _spotify.ListenForEvents = true;
-            _spotify.OnTrackChange += OnTrackChange;
             _spotify.OnTrackTimeChange += OnTrackTimeChange;
 
             while (!isRunning)
@@ -64,34 +66,22 @@ namespace HistoryForSpotify.Core.AudioServices
 
         private void OnTrackTimeChange(object sender, TrackTimeChangeEventArgs e)
         {
-            if (_differenceTime > 3d)
+
+            if (_currentTrack == null) return;
+
+            Console.WriteLine(e.AssociatedTrack.TrackResource.Uri);
+            Console.WriteLine(_currentTrack.TrackResource.Uri);
+            Console.WriteLine(e.TrackTime);
+
+            if (!String.Equals(e.AssociatedTrack.TrackResource.Uri, _currentTrack.TrackResource.Uri))
             {
-                if ((DateTime.Now - _lastSubmitTime).TotalSeconds < 3d)
-                {
-                    return;
-                }
-                else
-                {
-                    _lastTrackTime = e.TrackTime;
-                    _differenceTime = 0d;
-                    return;
-                }
+                OnNewHistoryItem(GetHistoryItemFromTrack(e.AssociatedTrack));
+                _currentTrack = e.AssociatedTrack;
             }
-
-            _lastTrackTime = e.TrackTime;
-            _differenceTime = Math.Abs(e.TrackTime - _lastTrackTime);
-
-            OnNewHistoryItemTrackTime(e.TrackTime);
-
-            _lastSubmitTime = DateTime.Now;
-            
-        }
-
-        private void OnTrackChange(object sender, TrackChangeEventArgs e)
-        {
-            if (e.NewTrack.IsAd()) return;
-
-            OnNewHistoryItem(GetHistoryItemFromTrack(e.NewTrack));
+            else
+            {
+                OnNewHistoryItemTrackTime(e.TrackTime);
+            }
         }
 
         private HistoryItem GetHistoryItemFromTrack(Track spotifyTrack)
@@ -120,7 +110,8 @@ namespace HistoryForSpotify.Core.AudioServices
             
             if (_currentHistoryItem == null)
             {
-                StatusResponse status = _spotify.GetStatus();   
+                StatusResponse status = _spotify.GetStatus();
+                _currentTrack = status.Track;
                 _currentHistoryItem = GetHistoryItemFromTrack(status.Track);
             }
 
