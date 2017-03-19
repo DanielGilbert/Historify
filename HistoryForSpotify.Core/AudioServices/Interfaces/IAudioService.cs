@@ -1,4 +1,5 @@
-﻿using HistoryForSpotify.Core.AudioServices.Delegates;
+﻿using HistoryForSpotify.Commons.Models;
+using HistoryForSpotify.Core.AudioServices.Delegates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,5 +18,6 @@ namespace HistoryForSpotify.Core.AudioServices.Interfaces
         string Name { get; }
         void Connect();
         void Disconnect();
+        HistoryItem GetCurrentHistoryItem();
     }
 }

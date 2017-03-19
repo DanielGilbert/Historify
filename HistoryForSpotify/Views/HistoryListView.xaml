@@ -31,8 +31,9 @@
                             <materialDesign:PackIcon Kind="Play" />
                         </Button>
                         <StackPanel Grid.Row="1" Margin="8 24 8 0" >
-                            <TextBlock FontWeight="Bold">Cycling</TextBlock>
-                            <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Name}" />
+                            <TextBlock FontWeight="Bold" Text="{Binding Name}" />
+                            <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Artist}" />
+                            <TextBlock FontStyle="Italic" TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Album}" />
                         </StackPanel>
                         <StackPanel HorizontalAlignment="Right" Grid.Row="2" Orientation="Horizontal" Margin="8">
                             <Button Style="{StaticResource MaterialDesignToolButton}" Width="30" Padding="2 0 2 0"

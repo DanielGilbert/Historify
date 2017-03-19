@@ -37,10 +37,16 @@ namespace HistoryForSpotify.ViewModels
 
             _audioService.OnNewHistoryItem += OnNewHistoryItem;
             _audioService.OnNewHistoryItemTrackTime += OnNewHistoryItemTrackTime;
+            _audioService.OnServiceConnected += OnServiceConnected;
 
             _historyItemViewModels = new ObservableCollection<HistoryItemViewModel>();
 
             _log.Debug("Created HistoryListViewModel");
+        }
+
+        private void OnServiceConnected()
+        {
+            OnNewHistoryItem(_audioService.GetCurrentHistoryItem());
         }
 
         private void OnNewHistoryItem(HistoryItem historyItem)

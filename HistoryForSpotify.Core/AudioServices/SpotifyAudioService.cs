@@ -16,6 +16,7 @@ namespace HistoryForSpotify.Core.AudioServices
     {
         private ILog _log;
         private SpotifyLocalAPI _spotify;
+        private HistoryItem _currentHistoryItem;
 
         public string Name
         {
@@ -53,9 +54,7 @@ namespace HistoryForSpotify.Core.AudioServices
                 isRunning = SpotifyLocalAPI.IsSpotifyRunning() && SpotifyLocalAPI.IsSpotifyWebHelperRunning() && _spotify.Connect();
             }
 
-            OnServiceConnected();
-
-            StatusResponse status = _spotify.GetStatus(); //status contains infos        
+            OnServiceConnected();  
         }
 
         private void OnTrackTimeChange(object sender, TrackTimeChangeEventArgs e)
@@ -67,23 +66,39 @@ namespace HistoryForSpotify.Core.AudioServices
         {
             if (e.NewTrack.IsAd()) return;
 
-            StatusResponse status = _spotify.GetStatus(); //status contains infos 
+            OnNewHistoryItem(GetHistoryItemFromTrack(e.NewTrack));
+        }
+
+        private HistoryItem GetHistoryItemFromTrack(Track spotifyTrack)
+        {
             HistoryItem historyItem = new HistoryItem();
-            historyItem.Album = e.NewTrack.AlbumResource.Name;
-            historyItem.AlbumUri = new Uri(e.NewTrack.AlbumResource.Location.Og);
-            historyItem.Artist = e.NewTrack.ArtistResource.Name;
-            historyItem.ArtistUri = new Uri(e.NewTrack.ArtistResource.Location.Og);
-            historyItem.Name = e.NewTrack.TrackResource.Name;
-            historyItem.TrackUri = new Uri(e.NewTrack.TrackResource.Location.Og);
-            historyItem.TrackLength = status.Track.Length;
+            historyItem.Album = spotifyTrack.AlbumResource.Name;
+            historyItem.AlbumUri = new Uri(spotifyTrack.AlbumResource.Location.Og);
+            historyItem.Artist = spotifyTrack.ArtistResource.Name;
+            historyItem.ArtistUri = new Uri(spotifyTrack.ArtistResource.Location.Og);
+            historyItem.Name = spotifyTrack.TrackResource.Name;
+            historyItem.TrackUri = new Uri(spotifyTrack.TrackResource.Location.Og);
+            historyItem.TrackLength = spotifyTrack.Length;
             historyItem.IsCompleted = false;
-            
-            OnNewHistoryItem(historyItem);
+
+            return historyItem;
         }
 
         public void Disconnect()
         {
 
+        }
+
+        public HistoryItem GetCurrentHistoryItem()
+        {
+            
+            if (_currentHistoryItem == null)
+            {
+                StatusResponse status = _spotify.GetStatus();   
+                _currentHistoryItem = GetHistoryItemFromTrack(status.Track);
+            }
+
+            return _currentHistoryItem;
         }
     }
 }
