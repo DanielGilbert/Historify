@@ -24,7 +24,7 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <Image Source="pack://application:,,,/HistoryForSpotify;component/Resources/Chartridge046_small.jpg" Height="140" Width="196" Stretch="UniformToFill" />
+                        <Image Source="{Binding AlbumArt}" Height="160" Width="160" Stretch="UniformToFill" />
                         <Button Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
                         HorizontalAlignment="Right" VerticalAlignment="Bottom"
                         Margin="0 0 16 -20">

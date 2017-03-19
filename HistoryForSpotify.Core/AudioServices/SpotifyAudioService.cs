@@ -74,6 +74,7 @@ namespace HistoryForSpotify.Core.AudioServices
             HistoryItem historyItem = new HistoryItem();
             historyItem.Album = spotifyTrack.AlbumResource.Name;
             historyItem.AlbumUri = new Uri(spotifyTrack.AlbumResource.Location.Og);
+            historyItem.AlbumArtUrl = spotifyTrack.GetAlbumArtUrl(SpotifyAPI.Local.Enums.AlbumArtSize.Size160);
             historyItem.Artist = spotifyTrack.ArtistResource.Name;
             historyItem.ArtistUri = new Uri(spotifyTrack.ArtistResource.Location.Og);
             historyItem.Name = spotifyTrack.TrackResource.Name;

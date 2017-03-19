@@ -1,9 +1,11 @@
 ﻿using HistoryForSpotify.Commons.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace HistoryForSpotify.ViewModels
 {
@@ -50,6 +52,19 @@ namespace HistoryForSpotify.ViewModels
             }
         }
 
+        public BitmapImage AlbumArt
+        {
+            get
+            {
+                return _historyItem.AlbumArt;
+            }
+            set
+            {
+                _historyItem.AlbumArt = value;
+                OnPropertyChanged(nameof(AlbumArt));
+            }
+        }
+
         public HistoryItemViewModel(HistoryItem historyItem)
         {
             _historyItem = new HistoryItem();
@@ -57,6 +72,19 @@ namespace HistoryForSpotify.ViewModels
             _historyItem.Name = historyItem.Name;
             _historyItem.Album = historyItem.Album;
             _historyItem.Artist = historyItem.Artist;
+            _historyItem.AlbumArtUrl = historyItem.AlbumArtUrl;
+            _historyItem.AlbumArt = historyItem.AlbumArt;
+            _historyItem.OnAlbumArtLoaded += OnAlbumArtLoaded;
+
+            _historyItem.DownloadAlbumBitmapAsync();
+        }
+
+        private void OnAlbumArtLoaded(BitmapImage obj)
+        {
+            DispatcherObject.BeginInvoke((Action)(() =>
+            {
+                AlbumArt = obj;
+            }));
         }
     }
 }
