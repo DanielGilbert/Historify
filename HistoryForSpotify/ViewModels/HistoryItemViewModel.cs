@@ -80,18 +80,34 @@ namespace HistoryForSpotify.ViewModels
             }
         }
 
+        public Guid Id
+        {
+            get
+            {
+                return _historyItem.Id;
+            }
+        }
+
         public event Action<HistoryItem> OnPlayHistoryItem = delegate { };
+        public event Action<HistoryItem, HistoryItemViewModel> OnDeleteHistoryItem = delegate { };
         public ICommand PlayHistoryItemCommand { get; set; }
+        public ICommand DeleteHistoryItemCommand { get; set; }
 
         public HistoryItemViewModel(HistoryItem historyItem)
         {
             PlayHistoryItemCommand = new RelayCommand(PlayHistoryItem);
+            DeleteHistoryItemCommand = new RelayCommand(DeleteHistoryItem);
 
             _historyItem = historyItem;
 
             _historyItem.OnAlbumArtLoaded += OnAlbumArtLoaded;
 
             _historyItem.DownloadAlbumBitmapAsync();
+        }
+
+        private void DeleteHistoryItem(object obj)
+        {
+            OnDeleteHistoryItem(_historyItem, this);
         }
 
         private void PlayHistoryItem(object obj)

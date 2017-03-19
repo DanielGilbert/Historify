@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace HistoryForSpotify.Core.AudioServices.Delegates
 {
-    public delegate void NewHistoryItemTrackTimeDelegate(double trackTime);
+    public delegate void NewHistoryItemTrackTimeDelegate(double trackTime, Guid itemId);
 }

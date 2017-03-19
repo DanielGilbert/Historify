@@ -74,10 +74,16 @@ namespace HistoryForSpotify.ViewModels
             {
                 HistoryItemViewModel historyItemViewModel = new HistoryItemViewModel(historyItem);
                 historyItemViewModel.OnPlayHistoryItem += OnPlayHistoryItem;
+                historyItemViewModel.OnDeleteHistoryItem += OnDeleteHistoryItem;
 
                 _historyItemViewModels.Insert(0, historyItemViewModel);
             }));
             
+        }
+
+        private void OnDeleteHistoryItem(HistoryItem historyItem, HistoryItemViewModel historyItemViewModel)
+        {
+            _historyItemViewModels.Remove(historyItemViewModel);
         }
 
         private void OnPlayHistoryItem(HistoryItem obj)
@@ -85,15 +91,20 @@ namespace HistoryForSpotify.ViewModels
             _audioService.PlayHistoryItemFromPosition(obj);
         }
 
-        private void OnNewHistoryItemTrackTime(double trackTime)
+        private void OnNewHistoryItemTrackTime(double trackTime, Guid itemId)
         {
-            UpdateCurrentItemTrackTime(trackTime);
+            UpdateHistoryItemTrackTime(trackTime, itemId);
         }
 
-        private void UpdateCurrentItemTrackTime(double trackTime)
+        private void UpdateHistoryItemTrackTime(double trackTime, Guid itemId)
         {
             if (_historyItemViewModels != null && _historyItemViewModels.Count > 0)
-            _historyItemViewModels[0].UpdateTrackTime(trackTime);
+            {
+                var selectedHistoryItem = (from p in _historyItemViewModels where Guid.Equals(p.Id, itemId) select p).FirstOrDefault();
+
+                if (selectedHistoryItem != null)
+                    selectedHistoryItem.UpdateTrackTime(trackTime);
+            }
         }
     }
 }

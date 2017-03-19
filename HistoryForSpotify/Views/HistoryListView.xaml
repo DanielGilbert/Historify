@@ -41,10 +41,23 @@
                                 <TextBlock FontStyle="Italic" TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Album}" />
                             </StackPanel>
                             <Separator Grid.Row="2" Style="{StaticResource MaterialDesignLightSeparator}"/>
-                            <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="8 8 8 0">
-                                <materialDesign:PackIcon Kind="Timer" Height="24" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                                <TextBlock Margin="5 0 0 0" TextWrapping="Wrap" VerticalAlignment="Center" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="{Binding CurrentPosition}" />
-                            </StackPanel>
+                            <Grid Grid.Row="3" HorizontalAlignment="Stretch" Margin="8 8 8 0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <materialDesign:PackIcon Kind="Timer" Height="24" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                    <TextBlock Margin="5 0 0 0" TextWrapping="Wrap" VerticalAlignment="Center" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="{Binding CurrentPosition}" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" HorizontalAlignment="Stretch" Orientation="Horizontal">
+                                    <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignToolButton}" Width="30" Padding="2 0 2 0"
+                            materialDesign:RippleAssist.IsCentered="True" Command="{Binding DeleteHistoryItemCommand}">
+                                        <materialDesign:PackIcon Kind="Delete" />
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
                         </Grid>
                     </materialDesign:Card>
                 </DataTemplate>

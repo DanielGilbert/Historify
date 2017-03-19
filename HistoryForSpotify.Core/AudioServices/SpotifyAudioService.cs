@@ -48,6 +48,11 @@ namespace HistoryForSpotify.Core.AudioServices
             if (!SpotifyIsAlive())
             {
                 OnServiceDisconnected();
+
+                _currentTrack = null;
+                _currentHistoryItem = null;
+                _lastSubmitTime = DateTime.Now;
+                
                 _aliveCheckTimer.Change(Timeout.Infinite, 1000);
             }
                
@@ -81,12 +86,14 @@ namespace HistoryForSpotify.Core.AudioServices
 
             if (!String.Equals(e.AssociatedTrack.TrackResource.Uri, _currentTrack.TrackResource.Uri))
             {
-                OnNewHistoryItem(GetHistoryItemFromTrack(e.AssociatedTrack));
+                _currentHistoryItem = GetHistoryItemFromTrack(e.AssociatedTrack);
+                OnNewHistoryItem(_currentHistoryItem);
                 _currentTrack = e.AssociatedTrack;
             }
             else
             {
-                OnNewHistoryItemTrackTime(e.TrackTime);
+                if (_currentHistoryItem == null) return;
+                OnNewHistoryItemTrackTime(e.TrackTime, _currentHistoryItem.Id);
             }
         }
 
