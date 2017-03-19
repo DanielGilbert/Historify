@@ -12,7 +12,7 @@ namespace HistoryForSpotify.ViewModels
     public class HistoryItemViewModel : ViewModelBase
     {
         private HistoryItem _historyItem;
-
+        private double _currentPosition;
         public string Name
         {
             get
@@ -52,15 +52,16 @@ namespace HistoryForSpotify.ViewModels
             }
         }
 
-        public double CurrentPosition
+        public string CurrentPosition
         {
             get
             {
-                return _historyItem.CurrentPosition;
+                return string.Format("{0}:{1:00}", Math.Floor(_currentPosition / 60),
+                              (Math.Abs(Math.Floor(_currentPosition)) % 60));
             }
             set
             {
-                _historyItem.CurrentPosition = value;
+                //_historyItem.CurrentPosition = value;
                 OnPropertyChanged(nameof(CurrentPosition));
             }
         }
@@ -103,7 +104,8 @@ namespace HistoryForSpotify.ViewModels
 
         public void UpdateTrackTime(double trackTime)
         {
-            CurrentPosition = trackTime;
+            _currentPosition = trackTime;
+            OnPropertyChanged(nameof(CurrentPosition));
         }
     }
 }

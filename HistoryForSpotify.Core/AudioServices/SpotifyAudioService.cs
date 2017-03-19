@@ -17,10 +17,7 @@ namespace HistoryForSpotify.Core.AudioServices
         private ILog _log;
         private SpotifyLocalAPI _spotify;
         private HistoryItem _currentHistoryItem;
-        private bool _newSong;
         private DateTime _lastSubmitTime;
-        private double _differenceTime;
-        private double _lastTrackTime;
 
         private Track _currentTrack;
 
@@ -42,7 +39,6 @@ namespace HistoryForSpotify.Core.AudioServices
             _log = log;
             _spotify = new SpotifyLocalAPI();
             _lastSubmitTime = DateTime.Now;
-            _differenceTime = 0;
         }
 
         public void Connect()
