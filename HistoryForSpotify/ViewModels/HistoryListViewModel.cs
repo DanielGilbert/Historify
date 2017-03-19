@@ -20,30 +20,16 @@ namespace HistoryForSpotify.ViewModels
 
             _audioService.OnNewSong += OnNewSong;
             _audioService.OnNewTrackTime += OnNewTrackTime;
-            _audioService.OnServiceConnected += OnServiceConnected;
-            _audioService.OnServiceDisconnected += OnServiceDisconnected;
 
             _log.Debug("Created HistoryListViewModel");
         }
 
-        private void OnServiceDisconnected()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void OnServiceConnected()
-        {
-            throw new NotImplementedException();
-        }
-
         private void OnNewTrackTime()
         {
-            throw new NotImplementedException();
         }
 
         private void OnNewSong()
         {
-            throw new NotImplementedException();
         }
     }
 }

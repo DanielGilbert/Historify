@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using HistoryForSpotify.Core.AudioServices.Delegates;
 using HistoryForSpotify.Commons.Logging.Interfaces;
 using SpotifyAPI.Local;
+using SpotifyAPI.Local.Models;
 
 namespace HistoryForSpotify.Core.AudioServices
 {
@@ -36,18 +37,20 @@ namespace HistoryForSpotify.Core.AudioServices
 
         public void Connect()
         {
-            
-            if (!SpotifyLocalAPI.IsSpotifyRunning())
-                return; //Make sure the spotify client is running
+            Task.Factory.StartNew(() => ConnectInternal());
+        }
 
-            if (!SpotifyLocalAPI.IsSpotifyWebHelperRunning())
-                return; //Make sure the WebHelper is running
+        private void ConnectInternal()
+        {
+            bool isRunning = false;
 
-            if (!_spotify.Connect())
-                return; //We need to call Connect before fetching infos, this will handle Auth stuff
-
+            while (!isRunning)
+            {
+                isRunning = SpotifyLocalAPI.IsSpotifyRunning() && SpotifyLocalAPI.IsSpotifyWebHelperRunning() && _spotify.Connect();
+            }
             OnServiceConnected();
-            //StatusResponse status = _spotify.GetStatus(); //status contains infos
+
+            StatusResponse status = _spotify.GetStatus(); //status contains infos        
         }
 
         public void Disconnect()
