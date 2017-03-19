@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HistoryForSpotify"
         xmlns:views="clr-namespace:HistoryForSpotify.Views"
         mc:Ignorable="d"
-        Title="History For Spotify" Height="350" Width="525"
+        Title="History For Spotify" Height="690" Width="745" WindowStartupLocation="CenterScreen"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -18,13 +18,16 @@
         d:DataContext="{Binding DesignShellViewModel, Source={StaticResource ViewModelLocator}}"
         DataContext="{Binding ShellViewModel, Source={StaticResource ViewModelLocator}}">
     <Grid>
-        <materialDesign:Transitioner Grid.Row="0" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}" AutoApplyTransitionOrigins="True">
-            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <views:HistoryListView Grid.Row="0" />
+        <materialDesign:Snackbar Grid.Row="1" IsActive="{Binding IsSnackbarActive}" HorizontalAlignment="Stretch"
+                                             x:Name="WaitingForSpotifySnackbar">
+            <materialDesign:SnackbarMessage>
                 <views:WaitForSpotifyView />
-            </materialDesign:TransitionerSlide>
-            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
-                <views:HistoryListView />
-            </materialDesign:TransitionerSlide>
-        </materialDesign:Transitioner>
+            </materialDesign:SnackbarMessage>
+        </materialDesign:Snackbar>
     </Grid>
 </Window>

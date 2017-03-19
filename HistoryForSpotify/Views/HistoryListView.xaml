@@ -9,38 +9,46 @@
              d:DesignHeight="300" d:DesignWidth="300"
              d:DataContext="{Binding DesignHistoryListViewModel, Source={StaticResource ViewModelLocator}}"
             DataContext="{Binding HistoryListViewModel, Source={StaticResource ViewModelLocator}}">
-    <ListBox ItemsSource="{Binding HistoryItemViewModels}" Margin="0 0 8 8" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-        <ListBox.ItemsPanel>
-            <ItemsPanelTemplate>
-                <WrapPanel IsItemsHost="True" />
-            </ItemsPanelTemplate>
-        </ListBox.ItemsPanel>
-        <ListBox.ItemTemplate>
-            <DataTemplate>
-                <materialDesign:Card Margin="4 4 0 0" Width="160">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="160" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Image Source="{Binding AlbumArt}" Height="160" Width="160" Stretch="UniformToFill" />
-                        <Button Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <ItemsControl ItemsSource="{Binding HistoryItemViewModels}" Margin="0 0 8 8" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel IsItemsHost="True" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <materialDesign:Card Margin="4 4 0 0" Width="160">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="160" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Image Source="{Binding AlbumArt}" Height="160" Width="160" Stretch="UniformToFill" />
+                            <Button Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
                         HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                        Margin="0 0 16 -20">
-                            <materialDesign:PackIcon Kind="Play" />
-                        </Button>
-                        <StackPanel Grid.Row="1" Margin="8 24 8 0" >
-                            <TextBlock FontWeight="Bold" Text="{Binding Name}" />
-                            <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Artist}" />
-                            <TextBlock FontStyle="Italic" TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Album}" />
-                        </StackPanel>
-                        <Separator Grid.Row="2" Style="{StaticResource MaterialDesignLightSeparator}"/>
-                        <TextBlock Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding CurrentPosition}" />
-                    </Grid>
-                </materialDesign:Card>
-            </DataTemplate>
-        </ListBox.ItemTemplate>
-    </ListBox>
+                        Margin="0 0 16 -20" Command="{Binding PlayHistoryItemCommand}" >
+                                <materialDesign:PackIcon Kind="Play" />
+                            </Button>
+                            <StackPanel Grid.Row="1" Margin="8 24 8 0" >
+                                <TextBlock FontWeight="Bold" Text="{Binding Name}" />
+                                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Artist}" />
+                                <TextBlock FontStyle="Italic" TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Album}" />
+                            </StackPanel>
+                            <Separator Grid.Row="2" Style="{StaticResource MaterialDesignLightSeparator}"/>
+                            <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="8 8 8 0">
+                                <materialDesign:PackIcon Kind="Timer" Height="24" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                <TextBlock Margin="5 0 0 0" TextWrapping="Wrap" VerticalAlignment="Center" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="{Binding CurrentPosition}" />
+                            </StackPanel>
+                        </Grid>
+                    </materialDesign:Card>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
 </UserControl>

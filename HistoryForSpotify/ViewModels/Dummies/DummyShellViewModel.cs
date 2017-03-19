@@ -9,25 +9,24 @@ namespace HistoryForSpotify.ViewModels.Dummies
 {
     public class DummyShellViewModel : ViewModelBase, IShellViewModel
     {
-        int _selectedIndex;
+        bool _isSnackbarActive;
 
-        public int SelectedIndex
+        public bool IsSnackbarActive
         {
             get
             {
-                return _selectedIndex;
+                return _isSnackbarActive;
             }
-
             set
             {
-                _selectedIndex = value;
-                OnPropertyChanged(nameof(SelectedIndex));
+                _isSnackbarActive = value;
+                OnPropertyChanged(nameof(IsSnackbarActive));
             }
         }
 
         public DummyShellViewModel()
         {
-            SelectedIndex = 0;
+            IsSnackbarActive = true;
         }
     }
 }

@@ -18,6 +18,7 @@ namespace HistoryForSpotify.Core.AudioServices.Interfaces
         string Name { get; }
         void Connect();
         void Disconnect();
+        void PlayHistoryItemFromPosition(HistoryItem itemToPlay);
         HistoryItem GetCurrentHistoryItem();
     }
 }

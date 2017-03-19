@@ -15,6 +15,7 @@ namespace HistoryForSpotify.ViewModels
     {
         private ILog _log;
         private IAudioService _audioService;
+
         private ObservableCollection<HistoryItemViewModel> _historyItemViewModels;
 
         public ObservableCollection<HistoryItemViewModel> HistoryItemViewModels
@@ -46,16 +47,42 @@ namespace HistoryForSpotify.ViewModels
 
         private void OnServiceConnected()
         {
-            OnNewHistoryItem(_audioService.GetCurrentHistoryItem());
+            Task.Factory.StartNew(() => OnInternalServiceConnected()).ContinueWith((result) => OnNewHistoryItem(result.Result));
+        }
+
+        private HistoryItem OnInternalServiceConnected()
+        {
+            HistoryItem historyItem = null;
+
+            while (historyItem == null)
+            {
+                try
+                {
+                    historyItem = _audioService.GetCurrentHistoryItem();
+                }
+                catch (Exception ex)
+                {
+                    _log?.Error(ex.ToString());
+                }
+            }
+            return historyItem;
         }
 
         private void OnNewHistoryItem(HistoryItem historyItem)
         {
             DispatcherObject.BeginInvoke((Action)(() =>
             {
-                _historyItemViewModels.Insert(0, new HistoryItemViewModel(historyItem));
+                HistoryItemViewModel historyItemViewModel = new HistoryItemViewModel(historyItem);
+                historyItemViewModel.OnPlayHistoryItem += OnPlayHistoryItem;
+
+                _historyItemViewModels.Insert(0, historyItemViewModel);
             }));
             
+        }
+
+        private void OnPlayHistoryItem(HistoryItem obj)
+        {
+            _audioService.PlayHistoryItemFromPosition(obj);
         }
 
         private void OnNewHistoryItemTrackTime(double trackTime)

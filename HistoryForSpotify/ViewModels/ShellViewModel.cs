@@ -11,25 +11,26 @@ namespace HistoryForSpotify.ViewModels
 {
     public class ShellViewModel : ViewModelBase, IShellViewModel
     {
-        private int _selectedIndex;
+        private bool _isSnackbarActive;
         private ILog _log;
         private IAudioService _audioService;
 
-        public int SelectedIndex
+        public bool IsSnackbarActive
         {
             get
             {
-                return _selectedIndex;
+                return _isSnackbarActive;
             }
             set
             {
-                _selectedIndex = value;
-                OnPropertyChanged(nameof(SelectedIndex));
+                _isSnackbarActive = value;
+                OnPropertyChanged(nameof(IsSnackbarActive));
             }
         }
 
         public ShellViewModel(ILog log, IAudioService audioService)
         {
+            IsSnackbarActive = true;
             _log = log;
             _audioService = audioService;
 
@@ -43,12 +44,13 @@ namespace HistoryForSpotify.ViewModels
 
         private void OnServiceDisconnected()
         {
-            SelectedIndex = 0;
+            IsSnackbarActive = true;
+            _audioService.Connect();
         }
 
         private void OnServiceConnected()
         {
-            SelectedIndex = 1;
+            IsSnackbarActive = false;
         }
     }
 }

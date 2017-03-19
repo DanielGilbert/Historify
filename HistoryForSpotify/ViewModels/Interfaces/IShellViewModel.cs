@@ -8,6 +8,6 @@ namespace HistoryForSpotify.ViewModels.Interfaces
 {
     public interface IShellViewModel
     {
-        int SelectedIndex { get; set; }
+        bool IsSnackbarActive { get; set; }
     }
 }

@@ -1,10 +1,12 @@
 ﻿using HistoryForSpotify.Commons.Models;
+using HistoryForSpotify.ViewModels.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
 namespace HistoryForSpotify.ViewModels
@@ -12,7 +14,7 @@ namespace HistoryForSpotify.ViewModels
     public class HistoryItemViewModel : ViewModelBase
     {
         private HistoryItem _historyItem;
-        private double _currentPosition;
+
         public string Name
         {
             get
@@ -56,12 +58,11 @@ namespace HistoryForSpotify.ViewModels
         {
             get
             {
-                return string.Format("{0}:{1:00}", Math.Floor(_currentPosition / 60),
-                              (Math.Abs(Math.Floor(_currentPosition)) % 60));
+                return string.Format("{0}:{1:00}", Math.Floor(_historyItem.CurrentPosition / 60),
+                              (Math.Abs(Math.Floor(_historyItem.CurrentPosition)) % 60));
             }
             set
             {
-                //_historyItem.CurrentPosition = value;
                 OnPropertyChanged(nameof(CurrentPosition));
             }
         }
@@ -79,19 +80,23 @@ namespace HistoryForSpotify.ViewModels
             }
         }
 
+        public event Action<HistoryItem> OnPlayHistoryItem = delegate { };
+        public ICommand PlayHistoryItemCommand { get; set; }
+
         public HistoryItemViewModel(HistoryItem historyItem)
         {
-            _historyItem = new HistoryItem();
+            PlayHistoryItemCommand = new RelayCommand(PlayHistoryItem);
 
-            _historyItem.Name = historyItem.Name;
-            _historyItem.Album = historyItem.Album;
-            _historyItem.Artist = historyItem.Artist;
-            _historyItem.AlbumArtUrl = historyItem.AlbumArtUrl;
-            _historyItem.AlbumArt = historyItem.AlbumArt;
+            _historyItem = historyItem;
+
             _historyItem.OnAlbumArtLoaded += OnAlbumArtLoaded;
-            
 
             _historyItem.DownloadAlbumBitmapAsync();
+        }
+
+        private void PlayHistoryItem(object obj)
+        {
+            OnPlayHistoryItem(_historyItem);
         }
 
         private void OnAlbumArtLoaded(BitmapImage obj)
@@ -104,7 +109,7 @@ namespace HistoryForSpotify.ViewModels
 
         public void UpdateTrackTime(double trackTime)
         {
-            _currentPosition = trackTime;
+            _historyItem.CurrentPosition = trackTime;
             OnPropertyChanged(nameof(CurrentPosition));
         }
     }

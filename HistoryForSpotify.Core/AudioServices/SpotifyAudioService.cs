@@ -9,6 +9,7 @@ using HistoryForSpotify.Commons.Logging.Interfaces;
 using SpotifyAPI.Local;
 using SpotifyAPI.Local.Models;
 using HistoryForSpotify.Commons.Models;
+using System.Threading;
 
 namespace HistoryForSpotify.Core.AudioServices
 {
@@ -18,7 +19,7 @@ namespace HistoryForSpotify.Core.AudioServices
         private SpotifyLocalAPI _spotify;
         private HistoryItem _currentHistoryItem;
         private DateTime _lastSubmitTime;
-
+        private Timer _aliveCheckTimer;
         private Track _currentTrack;
 
         public string Name
@@ -39,6 +40,17 @@ namespace HistoryForSpotify.Core.AudioServices
             _log = log;
             _spotify = new SpotifyLocalAPI();
             _lastSubmitTime = DateTime.Now;
+            _aliveCheckTimer = new Timer(checkAliveCallback, null, Timeout.Infinite, 1000);
+        }
+
+        private void checkAliveCallback(object state)
+        {
+            if (!SpotifyIsAlive())
+            {
+                OnServiceDisconnected();
+                _aliveCheckTimer.Change(Timeout.Infinite, 1000);
+            }
+               
         }
 
         public void Connect()
@@ -57,17 +69,15 @@ namespace HistoryForSpotify.Core.AudioServices
                 isRunning = SpotifyLocalAPI.IsSpotifyRunning() && SpotifyLocalAPI.IsSpotifyWebHelperRunning() && _spotify.Connect();
             }
 
-            OnServiceConnected();  
+            OnServiceConnected();
+
+            _aliveCheckTimer.Change(0, 1000);
         }
 
         private void OnTrackTimeChange(object sender, TrackTimeChangeEventArgs e)
         {
-
             if (_currentTrack == null) return;
-
-            Console.WriteLine(e.AssociatedTrack.TrackResource.Uri);
-            Console.WriteLine(_currentTrack.TrackResource.Uri);
-            Console.WriteLine(e.TrackTime);
+            if (e.AssociatedTrack == null) return;
 
             if (!String.Equals(e.AssociatedTrack.TrackResource.Uri, _currentTrack.TrackResource.Uri))
             {
@@ -84,12 +94,12 @@ namespace HistoryForSpotify.Core.AudioServices
         {
             HistoryItem historyItem = new HistoryItem();
             historyItem.Album = spotifyTrack.AlbumResource.Name;
-            historyItem.AlbumUri = new Uri(spotifyTrack.AlbumResource.Location.Og);
+            historyItem.AlbumUri = new Uri(spotifyTrack.AlbumResource.Uri);
             historyItem.AlbumArtUrl = spotifyTrack.GetAlbumArtUrl(SpotifyAPI.Local.Enums.AlbumArtSize.Size160);
             historyItem.Artist = spotifyTrack.ArtistResource.Name;
-            historyItem.ArtistUri = new Uri(spotifyTrack.ArtistResource.Location.Og);
+            historyItem.ArtistUri = new Uri(spotifyTrack.ArtistResource.Uri);
             historyItem.Name = spotifyTrack.TrackResource.Name;
-            historyItem.TrackUri = new Uri(spotifyTrack.TrackResource.Location.Og);
+            historyItem.TrackUri = new Uri(spotifyTrack.TrackResource.Uri);
             historyItem.TrackLength = spotifyTrack.Length;
             historyItem.IsCompleted = false;
 
@@ -112,6 +122,20 @@ namespace HistoryForSpotify.Core.AudioServices
             }
 
             return _currentHistoryItem;
+        }
+
+        public void PlayHistoryItemFromPosition(HistoryItem itemToPlay)
+        {
+            string call = String.Format("{0}%23{1}",
+                                itemToPlay.TrackUri,
+                                string.Format("{0}:{1:00}", Math.Floor(itemToPlay.CurrentPosition / 60),
+                                                            Math.Abs(Math.Floor(itemToPlay.CurrentPosition)) % 60));
+            _spotify.PlayURL(call);
+        }
+
+        private bool SpotifyIsAlive()
+        {
+            return SpotifyLocalAPI.IsSpotifyRunning() && SpotifyLocalAPI.IsSpotifyWebHelperRunning();
         }
     }
 }

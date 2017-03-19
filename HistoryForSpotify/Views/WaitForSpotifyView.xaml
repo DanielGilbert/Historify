@@ -18,7 +18,7 @@
         <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"                     
                      Value="0"
                      IsIndeterminate="True"
-                     Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12 12 12 12" />
+                     Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 12 0" />
         <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" TextWrapping="Wrap">Waiting for Spotify...</TextBlock>
     </Grid>
 </UserControl>
