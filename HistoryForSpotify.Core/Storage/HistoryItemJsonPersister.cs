@@ -35,7 +35,7 @@ namespace HistoryForSpotify.Core.Storage
 
             string filename = "history.json";
 
-            string data = JsonConvert.SerializeObject(historyItems);
+            string data = JsonConvert.SerializeObject(historyItems, Formatting.Indented);
 
             File.WriteAllText(Path.Combine(saveFolder, filename), data);
         }
