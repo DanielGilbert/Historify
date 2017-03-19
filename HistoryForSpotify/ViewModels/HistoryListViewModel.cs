@@ -60,6 +60,13 @@ namespace HistoryForSpotify.ViewModels
 
         private void OnNewHistoryItemTrackTime(double trackTime)
         {
+            UpdateCurrentItemTrackTime(trackTime);
+        }
+
+        private void UpdateCurrentItemTrackTime(double trackTime)
+        {
+            if (_historyItemViewModels != null && _historyItemViewModels.Count > 0)
+            _historyItemViewModels[0].UpdateTrackTime(trackTime);
         }
     }
 }

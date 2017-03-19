@@ -52,6 +52,19 @@ namespace HistoryForSpotify.ViewModels
             }
         }
 
+        public double CurrentPosition
+        {
+            get
+            {
+                return _historyItem.CurrentPosition;
+            }
+            set
+            {
+                _historyItem.CurrentPosition = value;
+                OnPropertyChanged(nameof(CurrentPosition));
+            }
+        }
+
         public BitmapImage AlbumArt
         {
             get
@@ -75,6 +88,7 @@ namespace HistoryForSpotify.ViewModels
             _historyItem.AlbumArtUrl = historyItem.AlbumArtUrl;
             _historyItem.AlbumArt = historyItem.AlbumArt;
             _historyItem.OnAlbumArtLoaded += OnAlbumArtLoaded;
+            
 
             _historyItem.DownloadAlbumBitmapAsync();
         }
@@ -85,6 +99,11 @@ namespace HistoryForSpotify.ViewModels
             {
                 AlbumArt = obj;
             }));
+        }
+
+        public void UpdateTrackTime(double trackTime)
+        {
+            CurrentPosition = trackTime;
         }
     }
 }

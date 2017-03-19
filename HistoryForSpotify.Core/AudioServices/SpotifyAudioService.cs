@@ -17,6 +17,7 @@ namespace HistoryForSpotify.Core.AudioServices
         private ILog _log;
         private SpotifyLocalAPI _spotify;
         private HistoryItem _currentHistoryItem;
+        private bool _newSong;
 
         public string Name
         {

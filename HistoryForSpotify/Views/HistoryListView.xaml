@@ -17,11 +17,12 @@
         </ListBox.ItemsPanel>
         <ListBox.ItemTemplate>
             <DataTemplate>
-                <materialDesign:Card Margin="4 4 0 0" Width="200">
+                <materialDesign:Card Margin="4 4 0 0" Width="160">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="140" />
+                            <RowDefinition Height="160" />
                             <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Image Source="{Binding AlbumArt}" Height="160" Width="160" Stretch="UniformToFill" />
@@ -35,22 +36,8 @@
                             <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Artist}" />
                             <TextBlock FontStyle="Italic" TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Album}" />
                         </StackPanel>
-                        <StackPanel HorizontalAlignment="Right" Grid.Row="2" Orientation="Horizontal" Margin="8">
-                            <Button Style="{StaticResource MaterialDesignToolButton}" Width="30" Padding="2 0 2 0"
-                            materialDesign:RippleAssist.IsCentered="True">
-                                <materialDesign:PackIcon Kind="ShareVariant" />
-                            </Button>
-                            <Button Style="{StaticResource MaterialDesignToolButton}" Width="30" Padding="2 0 2 0"
-                            materialDesign:RippleAssist.IsCentered="True">
-                                <materialDesign:PackIcon Kind="Heart" />
-                            </Button>
-                            <materialDesign:PopupBox Style="{StaticResource MaterialDesignToolPopupBox}" Padding="2 0 2 0">
-                                <StackPanel>
-                                    <Button Content="More"/>
-                                    <Button Content="Options"/>
-                                </StackPanel>
-                            </materialDesign:PopupBox>
-                        </StackPanel>
+                        <Separator Grid.Row="2" Style="{StaticResource MaterialDesignLightSeparator}"/>
+                        <TextBlock Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding CurrentPosition}" />
                     </Grid>
                 </materialDesign:Card>
             </DataTemplate>
