@@ -15,10 +15,16 @@ namespace HistoryForSpotify.Core.Storage
         public List<HistoryItem> Load(string saveFolder)
         {
             string filename = "history.json";
+            string path = Path.Combine(saveFolder, filename);
 
-            string data = File.ReadAllText(Path.Combine(saveFolder, filename));
+            List<HistoryItem> items = new List<HistoryItem>();
 
-            List<HistoryItem> items = JsonConvert.DeserializeObject<List<HistoryItem>>(data);
+            if (File.Exists(path))
+            {
+                string data = File.ReadAllText(Path.Combine(saveFolder, filename));
+
+                items = JsonConvert.DeserializeObject<List<HistoryItem>>(data);
+            }
 
             return items;
         }

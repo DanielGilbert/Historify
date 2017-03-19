@@ -1,6 +1,7 @@
 ﻿using HistoryForSpotify.Commons.Logging.Interfaces;
 using HistoryForSpotify.Commons.Models;
 using HistoryForSpotify.Core.AudioServices.Interfaces;
+using HistoryForSpotify.Core.Storage.Interface;
 using HistoryForSpotify.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,8 @@ namespace HistoryForSpotify.ViewModels
         private IAudioService _audioService;
 
         private ObservableCollection<HistoryItemViewModel> _historyItemViewModels;
+        private IHistoryItemPersister _historyItemPersister;
+        private string _saveFolder;
 
         public ObservableCollection<HistoryItemViewModel> HistoryItemViewModels
         {
@@ -31,18 +34,40 @@ namespace HistoryForSpotify.ViewModels
             }
         }
 
-        public HistoryListViewModel(ILog log, IAudioService audioService)
+        public HistoryListViewModel(ILog log,
+                                    IAudioService audioService,
+                                    IHistoryItemPersister historyItemPersister,
+                                    string saveFolder)
         {
             _log = log;
             _audioService = audioService;
+            _historyItemPersister = historyItemPersister;
+            _saveFolder = saveFolder;
 
             _audioService.OnNewHistoryItem += OnNewHistoryItem;
             _audioService.OnNewHistoryItemTrackTime += OnNewHistoryItemTrackTime;
             _audioService.OnServiceConnected += OnServiceConnected;
 
-            _historyItemViewModels = new ObservableCollection<HistoryItemViewModel>();
+            _historyItemViewModels = LoadExistingItemViewModels(_historyItemPersister, _saveFolder);
 
             _log.Debug("Created HistoryListViewModel");
+        }
+
+        private ObservableCollection<HistoryItemViewModel> LoadExistingItemViewModels(IHistoryItemPersister historyItemPersister, string saveFolder)
+        {
+            List<HistoryItem> historyItems = historyItemPersister.Load(saveFolder);
+
+            ObservableCollection<HistoryItemViewModel> historyItemViewModels = new ObservableCollection<HistoryItemViewModel>();
+
+            foreach(var item in historyItems)
+            {
+                DispatcherObject.Invoke((Action)(() =>
+                {
+                    historyItemViewModels.Add(CreateHistoryItemViewModelFrom(item));
+                }));
+            }
+
+            return historyItemViewModels;
         }
 
         private void OnServiceConnected()
@@ -72,13 +97,35 @@ namespace HistoryForSpotify.ViewModels
         {
             DispatcherObject.BeginInvoke((Action)(() =>
             {
-                HistoryItemViewModel historyItemViewModel = new HistoryItemViewModel(historyItem);
-                historyItemViewModel.OnPlayHistoryItem += OnPlayHistoryItem;
-                historyItemViewModel.OnDeleteHistoryItem += OnDeleteHistoryItem;
-
-                _historyItemViewModels.Insert(0, historyItemViewModel);
+                _historyItemViewModels.Insert(0, CreateHistoryItemViewModelFrom(historyItem));
+                SaveExistingHistoryItemsFrom(_historyItemPersister, _historyItemViewModels, _saveFolder);
             }));
+
             
+            
+        }
+
+        private void SaveExistingHistoryItemsFrom(IHistoryItemPersister historyItemPersister, 
+                                                  ObservableCollection<HistoryItemViewModel> historyItemViewModels,
+                                                  string _saveFolder)
+        {
+            List<HistoryItem> historyItems = new List<HistoryItem>();
+
+            foreach(var historyItemViewModel in historyItemViewModels)
+            {
+                historyItems.Add(historyItemViewModel.HistoryItem);
+            }
+
+            historyItemPersister.Save(historyItems, _saveFolder);
+        }
+
+        private HistoryItemViewModel CreateHistoryItemViewModelFrom(HistoryItem historyItem)
+        {
+            HistoryItemViewModel historyItemViewModel = new HistoryItemViewModel(historyItem);
+            historyItemViewModel.OnPlayHistoryItem += OnPlayHistoryItem;
+            historyItemViewModel.OnDeleteHistoryItem += OnDeleteHistoryItem;
+
+            return historyItemViewModel;
         }
 
         private void OnDeleteHistoryItem(HistoryItem historyItem, HistoryItemViewModel historyItemViewModel)

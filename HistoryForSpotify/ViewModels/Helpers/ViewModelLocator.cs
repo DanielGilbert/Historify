@@ -2,11 +2,14 @@
 using HistoryForSpotify.Commons.Logging.Interfaces;
 using HistoryForSpotify.Core.AudioServices;
 using HistoryForSpotify.Core.AudioServices.Interfaces;
+using HistoryForSpotify.Core.Storage;
+using HistoryForSpotify.Core.Storage.Interface;
 using HistoryForSpotify.ViewModels.Dummies;
 using HistoryForSpotify.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,11 +25,12 @@ namespace HistoryForSpotify.ViewModels.Helpers
         private IShellViewModel _shellViewModel;
         private IHistoryListViewModel _historyListViewModel;
         private IWaitForSpotifyViewModel _waitForSpotifyViewModel;
+        private IHistoryItemPersister _historyItemPersister;
 
         private IShellViewModel _designShellViewModel;
         private IHistoryListViewModel _designHistoryListViewModel;
         private IWaitForSpotifyViewModel _designWaitForSpotifyViewModel;
-
+        private string _saveFolder;
 
         public IShellViewModel ShellViewModel
         {
@@ -86,14 +90,19 @@ namespace HistoryForSpotify.ViewModels.Helpers
             }
             else
             {
+                _saveFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"HistoryForSpotify\");
+
+                if (!Directory.Exists(_saveFolder))
+                    Directory.CreateDirectory(_saveFolder);
 
                 //Create Dependencies
-                _log = LoggerFactory.GetLogger(@"D:\Log\");
+                _log = LoggerFactory.GetLogger(_saveFolder);
                 _audioService = new SpotifyAudioService(_log);
+                _historyItemPersister = new HistoryItemJsonPersister();
 
                 //Inject them
                 _shellViewModel = new ShellViewModel(_log, _audioService);
-                _historyListViewModel = new HistoryListViewModel(_log, _audioService);
+                _historyListViewModel = new HistoryListViewModel(_log, _audioService, _historyItemPersister, _saveFolder);
                 _waitForSpotifyViewModel = new WaitForSpotifyViewModel(_log);
             }
         }
