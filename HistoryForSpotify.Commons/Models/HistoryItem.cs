@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HistoryForSpotify.Commons.Models
 {
-    public class Bookmark
+    public class HistoryItem
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
@@ -21,7 +21,7 @@ namespace HistoryForSpotify.Commons.Models
         public double TrackLength { get; set; }
         public bool IsCompleted { get; set; }
 
-        public Bookmark()
+        public HistoryItem()
         {
             Id = Guid.NewGuid();
         }

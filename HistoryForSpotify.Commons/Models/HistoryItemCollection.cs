@@ -6,29 +6,29 @@ using System.Threading.Tasks;
 
 namespace HistoryForSpotify.Commons.Models
 {
-    public class BookmarkCollection
+    public class HistoryItemCollection
     {
         public DateTime TimeStamp { get; }
-        public List<Bookmark> Bookmarks { get; }
+        public List<HistoryItem> HistoryItems { get; }
 
-        public BookmarkCollection()
+        public HistoryItemCollection()
         {
-            Bookmarks = new List<Bookmark>();
+            HistoryItems = new List<HistoryItem>();
             TimeStamp = DateTime.UtcNow;
         }
 
-        public void Add(Bookmark bookmark)
+        public void Add(HistoryItem bookmark)
         {
-            if (Bookmarks == null)
-                throw new InvalidOperationException("Bookmarks are not initialized");
+            if (HistoryItems == null)
+                throw new InvalidOperationException("HistoryItems are not initialized");
 
             if (bookmark == null)
                 throw new ArgumentNullException(nameof(bookmark));
 
-            Bookmarks.Add(bookmark);
+            HistoryItems.Add(bookmark);
         }
 
-        public void Delete(Bookmark bookmark)
+        public void Delete(HistoryItem bookmark)
         {
             throw new NotImplementedException();
         }
@@ -38,7 +38,7 @@ namespace HistoryForSpotify.Commons.Models
             throw new NotImplementedException();
         }
 
-        public void Insert(Bookmark bookmark, int index)
+        public void Insert(HistoryItem bookmark, int index)
         {
             throw new NotImplementedException();
         }

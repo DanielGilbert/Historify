@@ -68,8 +68,8 @@
     <Compile Include="Logging\Factories\LoggerFactory.cs" />
     <Compile Include="Logging\Interfaces\ILog.cs" />
     <Compile Include="Logging\SerilogWrapper.cs" />
-    <Compile Include="Models\Bookmark.cs" />
-    <Compile Include="Models\BookmarkCollection.cs" />
+    <Compile Include="Models\HistoryItem.cs" />
+    <Compile Include="Models\HistoryItemCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

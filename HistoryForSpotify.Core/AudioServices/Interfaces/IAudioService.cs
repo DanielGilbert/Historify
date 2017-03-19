@@ -9,8 +9,8 @@ namespace HistoryForSpotify.Core.AudioServices.Interfaces
 {
     public interface IAudioService
     {
-        event NewTrackDelegate OnNewSong;
-        event NewTrackTimeDelegate OnNewTrackTime;
+        event NewHistoryItemDelegate OnNewHistoryItem;
+        event NewHistoryItemTrackTimeDelegate OnNewHistoryItemTrackTime;
         event ServiceConnectedDelegate OnServiceConnected;
         event ServiceDisconnectedDelegate OnServiceDisconnected;
 

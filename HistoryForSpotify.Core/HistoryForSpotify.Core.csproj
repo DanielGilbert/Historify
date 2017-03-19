@@ -56,8 +56,8 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AudioServices\Delegates\NewSongDelegate.cs" />
-    <Compile Include="AudioServices\Delegates\NewTrackTimeDelegate.cs" />
+    <Compile Include="AudioServices\Delegates\NewHistoryItemDelegate.cs" />
+    <Compile Include="AudioServices\Delegates\NewHistoryItemTrackTimeDelegate.cs" />
     <Compile Include="AudioServices\Delegates\ServiceConnectedDelegate.cs" />
     <Compile Include="AudioServices\Delegates\ServiceDisconnectedDelegate.cs" />
     <Compile Include="AudioServices\Interfaces\IAudioService.cs" />

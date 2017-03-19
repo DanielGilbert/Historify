@@ -66,6 +66,7 @@
     <Compile Include="ViewModels\Dummies\DummyHistoryListViewModel.cs" />
     <Compile Include="ViewModels\Dummies\DummyShellViewModel.cs" />
     <Compile Include="ViewModels\Dummies\DummyWaitForSpotifyViewModel.cs" />
+    <Compile Include="ViewModels\HistoryItemViewModel.cs" />
     <Compile Include="ViewModels\HistoryListViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IHistoryListViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IShellViewModel.cs" />

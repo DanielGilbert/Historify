@@ -15,12 +15,12 @@ namespace HistoryForSpotify.Commons.Tests.Models
         [Test]
         public void AddSingleBookmarkTest()
         {
-            BookmarkCollection bookmarkCollection = new BookmarkCollection();
-            Bookmark demoBookmark = new Bookmark();
+            HistoryItemCollection bookmarkCollection = new HistoryItemCollection();
+            HistoryItem demoBookmark = new HistoryItem();
 
             bookmarkCollection.Add(demoBookmark);
 
-            Assert.AreEqual(1, bookmarkCollection.Bookmarks.Count);
+            Assert.AreEqual(1, bookmarkCollection.HistoryItems.Count);
         }
 
         [Test]
@@ -31,7 +31,7 @@ namespace HistoryForSpotify.Commons.Tests.Models
         
         private void AddNullBookmarktestDelegate()
         {
-            BookmarkCollection bookmarkCollection = new BookmarkCollection();
+            HistoryItemCollection bookmarkCollection = new HistoryItemCollection();
 
             bookmarkCollection.Add(null);
         }
@@ -41,15 +41,15 @@ namespace HistoryForSpotify.Commons.Tests.Models
         [Test]
         public void CheckBookmarksInitialized()
         {
-            BookmarkCollection bookmarkCollection = new BookmarkCollection();
+            HistoryItemCollection bookmarkCollection = new HistoryItemCollection();
 
-            Assert.NotNull(bookmarkCollection.Bookmarks);
+            Assert.NotNull(bookmarkCollection.HistoryItems);
         }
 
         [Test]
         public void CheckTimestampInitialized()
         {
-            BookmarkCollection bookmarkCollection = new BookmarkCollection();
+            HistoryItemCollection bookmarkCollection = new HistoryItemCollection();
 
             Assert.NotNull(bookmarkCollection.TimeStamp);
         }
@@ -59,7 +59,7 @@ namespace HistoryForSpotify.Commons.Tests.Models
         [Test]
         public void CheckTimestampNotMinimum()
         {
-            BookmarkCollection bookmarkCollection = new BookmarkCollection();
+            HistoryItemCollection bookmarkCollection = new HistoryItemCollection();
 
             Assert.AreNotEqual(DateTime.MinValue, bookmarkCollection.TimeStamp);
         }
@@ -67,7 +67,7 @@ namespace HistoryForSpotify.Commons.Tests.Models
         [Test]
         public void CheckTimestampNotMaximum()
         {
-            BookmarkCollection bookmarkCollection = new BookmarkCollection();
+            HistoryItemCollection bookmarkCollection = new HistoryItemCollection();
 
             Assert.AreNotEqual(DateTime.MaxValue, bookmarkCollection.TimeStamp);
         }
