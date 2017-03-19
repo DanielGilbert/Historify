@@ -18,7 +18,9 @@ namespace HistoryForSpotify.Core.AudioServices
         private SpotifyLocalAPI _spotify;
         private HistoryItem _currentHistoryItem;
         private bool _newSong;
-
+        private DateTime _lastSubmitTime;
+        private double _differenceTime;
+        private double _lastTrackTime;
         public string Name
         {
             get
@@ -36,6 +38,8 @@ namespace HistoryForSpotify.Core.AudioServices
         {
             _log = log;
             _spotify = new SpotifyLocalAPI();
+            _lastSubmitTime = DateTime.Now;
+            _differenceTime = 0;
         }
 
         public void Connect()
@@ -60,7 +64,27 @@ namespace HistoryForSpotify.Core.AudioServices
 
         private void OnTrackTimeChange(object sender, TrackTimeChangeEventArgs e)
         {
+            if (_differenceTime > 3d)
+            {
+                if ((DateTime.Now - _lastSubmitTime).TotalSeconds < 3d)
+                {
+                    return;
+                }
+                else
+                {
+                    _lastTrackTime = e.TrackTime;
+                    _differenceTime = 0d;
+                    return;
+                }
+            }
+
+            _lastTrackTime = e.TrackTime;
+            _differenceTime = Math.Abs(e.TrackTime - _lastTrackTime);
+
             OnNewHistoryItemTrackTime(e.TrackTime);
+
+            _lastSubmitTime = DateTime.Now;
+            
         }
 
         private void OnTrackChange(object sender, TrackChangeEventArgs e)
