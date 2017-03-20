@@ -39,6 +39,9 @@ namespace HistoryForSpotify.ViewModels
                                     IHistoryItemPersister historyItemPersister,
                                     string saveFolder)
         {
+            if (log == null)
+                throw new ArgumentNullException(nameof(log));
+
             _log = log;
             _audioService = audioService;
             _historyItemPersister = historyItemPersister;
