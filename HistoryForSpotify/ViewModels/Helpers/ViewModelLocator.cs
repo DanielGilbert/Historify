@@ -17,6 +17,11 @@ using System.Windows;
 
 namespace HistoryForSpotify.ViewModels.Helpers
 {
+    /// <summary>
+    /// A ViewModelLocator for this application
+    /// 
+    /// It wires together all the necessary ViewModels and it's dependencies.
+    /// </summary>
     public class ViewModelLocator
     {
         private ILog _log;
@@ -32,6 +37,10 @@ namespace HistoryForSpotify.ViewModels.Helpers
         private IWaitForSpotifyViewModel _designWaitForSpotifyViewModel;
         private string _saveFolder;
 
+        #region ViewModels
+        /// <summary>
+        /// The ViewModel for the Shell
+        /// </summary>
         public IShellViewModel ShellViewModel
         {
             get
@@ -39,7 +48,9 @@ namespace HistoryForSpotify.ViewModels.Helpers
                 return _shellViewModel;
             }
         }
-
+        /// <summary>
+        /// ViewModel for the HistoryListView
+        /// </summary>
         public IHistoryListViewModel HistoryListViewModel
         {
             get
@@ -47,7 +58,9 @@ namespace HistoryForSpotify.ViewModels.Helpers
                 return _historyListViewModel;
             }
         }
-
+        /// <summary>
+        /// ViewModel for the WaitForSpotifyView
+        /// </summary>
         public IWaitForSpotifyViewModel WaitForSpotifyViewModel
         {
             get
@@ -55,7 +68,11 @@ namespace HistoryForSpotify.ViewModels.Helpers
                 return _waitForSpotifyViewModel;
             }
         }
-
+        #endregion
+        #region Designer ViewModels
+        /// <summary>
+        /// A dummy ViewModel which takes care of the Shell
+        /// </summary>
         public IShellViewModel DesignShellViewModel
         {
             get
@@ -63,7 +80,9 @@ namespace HistoryForSpotify.ViewModels.Helpers
                 return _designShellViewModel;
             }
         }
-
+        /// <summary>
+        /// A dummy ViewModel which takes care of the HistoryListView
+        /// </summary>
         public IHistoryListViewModel DesignHistoryListViewModel
         {
             get
@@ -71,7 +90,9 @@ namespace HistoryForSpotify.ViewModels.Helpers
                 return _designHistoryListViewModel;
             }
         }
-
+        /// <summary>
+        /// A dummy ViewModel which takes care of the WaitForSpotify View
+        /// </summary>
         public IWaitForSpotifyViewModel DesignWaitForSpotifyViewModel
         {
             get
@@ -79,7 +100,15 @@ namespace HistoryForSpotify.ViewModels.Helpers
                 return _designWaitForSpotifyViewModel;
             }
         }
-
+        #endregion
+        /// <summary>
+        /// This is "Poor Man's Dependency Injection":
+        /// 
+        /// Wiring up all the dependency by myself, and afterwards
+        /// injecting them into the ViewModels.
+        /// 
+        /// But it's a small application, so this is ok.
+        /// </summary>
         public ViewModelLocator()
         {
             if (IsInDesignTime())
