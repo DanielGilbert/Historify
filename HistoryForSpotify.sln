@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HistoryForSpotify", "HistoryForSpotify\HistoryForSpotify.csproj", "{3D0342BE-639D-41C1-B50E-2AF343F533A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HistoryForSpotify.Core", "HistoryForSpotify.Core\HistoryForSpotify.Core.csproj", "{111DE607-1B63-4DF9-AED8-18F0337960A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HistoryForSpotify.Commons", "HistoryForSpotify.Commons\HistoryForSpotify.Commons.csproj", "{9F43FF4E-C7CA-415A-9E13-1F76A2BE69AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C671AA13-3F5A-49CB-A911-DB07C099105C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HistoryForSpotify.Tests", "HistoryForSpotify.Tests\HistoryForSpotify.Tests.csproj", "{F0516D37-1CBF-4250-9496-9848B88A23C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HistoryForSpotify.Commons.Tests", "HistoryForSpotify.Commons.Tests\HistoryForSpotify.Commons.Tests.csproj", "{FB418B32-6BF1-4D1E-8F68-9C6153A00AD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HistoryForSpotify.Core.Tests", "HistoryForSpotify.Core.Tests\HistoryForSpotify.Core.Tests.csproj", "{B1A1617E-09A9-41B2-9382-94F164F00DB3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D0342BE-639D-41C1-B50E-2AF343F533A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D0342BE-639D-41C1-B50E-2AF343F533A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D0342BE-639D-41C1-B50E-2AF343F533A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D0342BE-639D-41C1-B50E-2AF343F533A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{111DE607-1B63-4DF9-AED8-18F0337960A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{111DE607-1B63-4DF9-AED8-18F0337960A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{111DE607-1B63-4DF9-AED8-18F0337960A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{111DE607-1B63-4DF9-AED8-18F0337960A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F43FF4E-C7CA-415A-9E13-1F76A2BE69AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F43FF4E-C7CA-415A-9E13-1F76A2BE69AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F43FF4E-C7CA-415A-9E13-1F76A2BE69AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F43FF4E-C7CA-415A-9E13-1F76A2BE69AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0516D37-1CBF-4250-9496-9848B88A23C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0516D37-1CBF-4250-9496-9848B88A23C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0516D37-1CBF-4250-9496-9848B88A23C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0516D37-1CBF-4250-9496-9848B88A23C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB418B32-6BF1-4D1E-8F68-9C6153A00AD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB418B32-6BF1-4D1E-8F68-9C6153A00AD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB418B32-6BF1-4D1E-8F68-9C6153A00AD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB418B32-6BF1-4D1E-8F68-9C6153A00AD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1A1617E-09A9-41B2-9382-94F164F00DB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1A1617E-09A9-41B2-9382-94F164F00DB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1A1617E-09A9-41B2-9382-94F164F00DB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1A1617E-09A9-41B2-9382-94F164F00DB3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F0516D37-1CBF-4250-9496-9848B88A23C4} = {C671AA13-3F5A-49CB-A911-DB07C099105C}
+		{FB418B32-6BF1-4D1E-8F68-9C6153A00AD6} = {C671AA13-3F5A-49CB-A911-DB07C099105C}
+		{B1A1617E-09A9-41B2-9382-94F164F00DB3} = {C671AA13-3F5A-49CB-A911-DB07C099105C}
+	EndGlobalSection
+EndGlobal

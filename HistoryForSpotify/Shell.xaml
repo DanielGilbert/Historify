@@ -1,0 +1,33 @@
+﻿<Window x:Class="HistoryForSpotify.Shell"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HistoryForSpotify"
+        xmlns:views="clr-namespace:HistoryForSpotify.Views"
+        mc:Ignorable="d"
+        Title="History For Spotify" Height="690" Width="745" WindowStartupLocation="CenterScreen"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        d:DataContext="{Binding DesignShellViewModel, Source={StaticResource ViewModelLocator}}"
+        DataContext="{Binding ShellViewModel, Source={StaticResource ViewModelLocator}}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <views:HistoryListView Grid.Row="0" />
+        <materialDesign:Snackbar Grid.Row="1" IsActive="{Binding IsSnackbarActive}" HorizontalAlignment="Stretch"
+                                             x:Name="WaitingForSpotifySnackbar">
+            <materialDesign:SnackbarMessage>
+                <views:WaitForSpotifyView />
+            </materialDesign:SnackbarMessage>
+        </materialDesign:Snackbar>
+    </Grid>
+</Window>
