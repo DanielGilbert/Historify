@@ -102,13 +102,16 @@ namespace HistoryForSpotify.ViewModels.Helpers
         }
         #endregion
         /// <summary>
-        /// This is "Poor Man's Dependency Injection":
+        /// This is "Pure Dependency Injection":
         /// 
         /// Wiring up all the dependency by myself, and afterwards
         /// injecting them into the ViewModels.
         /// 
         /// But it's a small application, so this is ok.
         /// </summary>
+        /// <remarks>
+        /// See also: http://blog.ploeh.dk/2014/06/10/pure-di/
+        /// </remarks>
         public ViewModelLocator()
         {
             if (IsInDesignTime())
