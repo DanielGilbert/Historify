@@ -52,6 +52,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mockups\AudioService\DefaultMockedAudioService.cs" />
+    <Compile Include="Mockups\HistoryItemPersister\DefaultMockedHistoryItemPersister.cs" />
+    <Compile Include="Mockups\Log\DefaultMockedLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -80,6 +83,14 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HistoryForSpotify.Commons\HistoryForSpotify.Commons.csproj">
+      <Project>{9f43ff4e-c7ca-415a-9e13-1f76a2be69af}</Project>
+      <Name>HistoryForSpotify.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HistoryForSpotify.Core\HistoryForSpotify.Core.csproj">
+      <Project>{111DE607-1B63-4DF9-AED8-18F0337960A6}</Project>
+      <Name>HistoryForSpotify.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HistoryForSpotify\HistoryForSpotify.csproj">
       <Project>{3d0342be-639d-41c1-b50e-2af343f533a7}</Project>
       <Name>HistoryForSpotify</Name>
