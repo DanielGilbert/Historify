@@ -43,11 +43,6 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Image Source="{Binding AlbumArt}" Height="180" Width="180" Stretch="UniformToFill" />
-                            <Button Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
-                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                        Margin="0 0 16 -20" Command="{Binding PlayHistoryItemCommand}" >
-                                <materialDesign:PackIcon Kind="Play" />
-                            </Button>
                             <StackPanel Grid.Row="1" Margin="8 24 8 0" >
                                 <TextBlock FontWeight="Bold" Text="{Binding Name}" />
                                 <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Artist}" />
