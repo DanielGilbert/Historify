@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HistoryForSpotify"
         xmlns:views="clr-namespace:HistoryForSpotify.Views"
         mc:Ignorable="d"
-        Title="History For Spotify" Height="690" Width="1000" WindowStartupLocation="CenterScreen"
+        Title="Historify" Height="690" Width="1000" WindowStartupLocation="CenterScreen"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"

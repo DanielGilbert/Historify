@@ -14,7 +14,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <ListBox ItemsSource="{Binding HistoryItemViewModels}" Margin="0 0 8 8">
+        <ListBox ItemsSource="{Binding HistoryItemViewModels}">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel IsItemsHost="True" />
