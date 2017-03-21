@@ -12,9 +12,18 @@
              Margin="10 0 0 0">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="120" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <ListBox ItemsSource="{Binding HistoryItemViewModels}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Style="{DynamicResource MaterialDesignDisplay2TextBlock}" Foreground="#FFFFFFFF" Text="Verlauf" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
+        </Grid>
+        <ListBox Grid.Row="1" ItemsSource="{Binding HistoryItemViewModels}">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel IsItemsHost="True" />
@@ -44,7 +53,7 @@
                             </Grid.RowDefinitions>
                             <Image Source="{Binding AlbumArt}" Height="180" Width="180" Stretch="UniformToFill" />
                             <StackPanel Grid.Row="1" Margin="8 24 8 0" >
-                                <TextBlock TextWrapping="Wrap" FontWeight="Bold" Text="{Binding Name}" />
+                                <TextBlock TextWrapping="Wrap" Foreground="#FFC7C7C7" FontWeight="Bold" Text="{Binding Name}" />
                                 <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Artist}" />
                                 <TextBlock TextWrapping="Wrap" Foreground="{DynamicResource MaterialDesignAlbumForeground}" VerticalAlignment="Center" Text="{Binding Album}" />
                             </StackPanel>
