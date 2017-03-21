@@ -44,9 +44,9 @@
                             </Grid.RowDefinitions>
                             <Image Source="{Binding AlbumArt}" Height="180" Width="180" Stretch="UniformToFill" />
                             <StackPanel Grid.Row="1" Margin="8 24 8 0" >
-                                <TextBlock FontWeight="Bold" Text="{Binding Name}" />
+                                <TextBlock TextWrapping="Wrap" FontWeight="Bold" Text="{Binding Name}" />
                                 <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Artist}" />
-                                <TextBlock FontStyle="Italic" TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Album}" />
+                                <TextBlock TextWrapping="Wrap" Foreground="{DynamicResource MaterialDesignAlbumForeground}" VerticalAlignment="Center" Text="{Binding Album}" />
                             </StackPanel>
                             <Separator Grid.Row="2" Style="{StaticResource MaterialDesignLightSeparator}"/>
                             <Grid Grid.Row="3" HorizontalAlignment="Stretch" Margin="8 8 8 0">
