@@ -10,8 +10,6 @@ namespace HistoryForSpotify.Tests.Mockups.HistoryItemPersister
 {
     class DefaultMockedHistoryItemPersister : IHistoryItemPersister
     {
-        string _data;
-
         public List<HistoryItem> Load(string saveFolder)
         {
             return null;

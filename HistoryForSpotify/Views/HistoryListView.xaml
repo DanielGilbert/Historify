@@ -8,7 +8,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              d:DataContext="{Binding DesignHistoryListViewModel, Source={StaticResource ViewModelLocator}}"
-            DataContext="{Binding HistoryListViewModel, Source={StaticResource ViewModelLocator}}">
+            DataContext="{Binding HistoryListViewModel, Source={StaticResource ViewModelLocator}}"
+             Margin="10 0 0 0">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -33,15 +34,15 @@
             </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <materialDesign:Card Margin="4 4 0 0" Width="160">
+                    <materialDesign:Card Margin="4 4 0 0" Width="180">
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="160" />
+                                <RowDefinition Height="180" />
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <Image Source="{Binding AlbumArt}" Height="160" Width="160" Stretch="UniformToFill" />
+                            <Image Source="{Binding AlbumArt}" Height="180" Width="180" Stretch="UniformToFill" />
                             <Button Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
                         HorizontalAlignment="Right" VerticalAlignment="Bottom"
                         Margin="0 0 16 -20" Command="{Binding PlayHistoryItemCommand}" >
