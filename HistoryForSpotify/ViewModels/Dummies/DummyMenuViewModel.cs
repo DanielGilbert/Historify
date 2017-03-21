@@ -1,5 +1,4 @@
-﻿using HistoryForSpotify.ViewModels.Base;
-using HistoryForSpotify.ViewModels.Interfaces;
+﻿using HistoryForSpotify.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HistoryForSpotify.ViewModels.Dummies
 {
-    public class DummyWaitForSpotifyViewModel : ViewModelBase, IWaitForSpotifyViewModel
+    public class DummyMenuViewModel : IMenuViewModel
     {
     }
 }

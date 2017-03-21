@@ -1,4 +1,5 @@
 ﻿using HistoryForSpotify.Commons.Logging.Interfaces;
+using HistoryForSpotify.ViewModels.Base;
 using HistoryForSpotify.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;

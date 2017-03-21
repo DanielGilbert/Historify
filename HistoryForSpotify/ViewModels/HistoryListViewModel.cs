@@ -2,6 +2,7 @@
 using HistoryForSpotify.Commons.Models;
 using HistoryForSpotify.Core.AudioServices.Interfaces;
 using HistoryForSpotify.Core.Storage.Interface;
+using HistoryForSpotify.ViewModels.Base;
 using HistoryForSpotify.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;

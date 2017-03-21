@@ -65,20 +65,26 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModels\Dummies\DummyHistoryListViewModel.cs" />
+    <Compile Include="ViewModels\Dummies\DummyMenuViewModel.cs" />
     <Compile Include="ViewModels\Dummies\DummyShellViewModel.cs" />
     <Compile Include="ViewModels\Dummies\DummyWaitForSpotifyViewModel.cs" />
     <Compile Include="ViewModels\Helpers\RelayCommand.cs" />
     <Compile Include="ViewModels\HistoryItemViewModel.cs" />
     <Compile Include="ViewModels\HistoryListViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IHistoryListViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IMenuViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IShellViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IWaitForSpotifyViewModel.cs" />
     <Compile Include="ViewModels\Helpers\ViewModelLocator.cs" />
+    <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
     <Compile Include="ViewModels\WaitForSpotifyViewModel.cs" />
     <Compile Include="Views\HistoryListView.xaml.cs">
       <DependentUpon>HistoryListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MenuView.xaml.cs">
+      <DependentUpon>MenuView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WaitForSpotifyView.xaml.cs">
       <DependentUpon>WaitForSpotifyView.xaml</DependentUpon>
@@ -100,6 +106,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\HistoryListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

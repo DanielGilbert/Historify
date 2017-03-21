@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HistoryForSpotify.ViewModels.Dummies
+namespace HistoryForSpotify.ViewModels
 {
-    public class DummyWaitForSpotifyViewModel : ViewModelBase, IWaitForSpotifyViewModel
+    public class MenuViewModel : ViewModelBase, IMenuViewModel
     {
     }
 }

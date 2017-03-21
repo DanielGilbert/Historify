@@ -18,16 +18,28 @@
         DataContext="{Binding ShellViewModel, Source={StaticResource ViewModelLocator}}"
         Background="{DynamicResource MaterialDesignPaper}">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="auto" />
-        </Grid.RowDefinitions>
-        <views:HistoryListView Grid.Row="0" />
-        <materialDesign:Snackbar Grid.Row="1" IsActive="{Binding IsSnackbarActive}" HorizontalAlignment="Stretch"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="205" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <views:MenuView />
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <views:HistoryListView Grid.Row="0" />
+            <materialDesign:Snackbar Grid.Row="1" IsActive="{Binding IsSnackbarActive}" HorizontalAlignment="Stretch"
                                              x:Name="WaitingForSpotifySnackbar">
-            <materialDesign:SnackbarMessage>
-                <views:WaitForSpotifyView />
-            </materialDesign:SnackbarMessage>
-        </materialDesign:Snackbar>
+                <materialDesign:SnackbarMessage>
+                    <views:WaitForSpotifyView />
+                </materialDesign:SnackbarMessage>
+            </materialDesign:Snackbar>
+        </Grid>
+
+
+
     </Grid>
 </Window>

@@ -31,10 +31,12 @@ namespace HistoryForSpotify.ViewModels.Helpers
         private IHistoryListViewModel _historyListViewModel;
         private IWaitForSpotifyViewModel _waitForSpotifyViewModel;
         private IHistoryItemPersister _historyItemPersister;
+        private IMenuViewModel _menuViewModel;
 
         private IShellViewModel _designShellViewModel;
         private IHistoryListViewModel _designHistoryListViewModel;
         private IWaitForSpotifyViewModel _designWaitForSpotifyViewModel;
+        private IMenuViewModel _designMenuViewModel;
         private string _saveFolder;
 
         #region ViewModels
@@ -66,6 +68,16 @@ namespace HistoryForSpotify.ViewModels.Helpers
             get
             {
                 return _waitForSpotifyViewModel;
+            }
+        }
+        /// <summary>
+        /// ViewModel for the left hand Menu
+        /// </summary>
+        public IMenuViewModel MenuViewModel
+        {
+            get
+            {
+                return _menuViewModel;
             }
         }
         #endregion
@@ -100,6 +112,16 @@ namespace HistoryForSpotify.ViewModels.Helpers
                 return _designWaitForSpotifyViewModel;
             }
         }
+        /// <summary>
+        /// ViewModel for the left hand Menu
+        /// </summary>
+        public IMenuViewModel DesignMenuViewModel
+        {
+            get
+            {
+                return _designMenuViewModel;
+            }
+        }
         #endregion
         /// <summary>
         /// This is "Pure Dependency Injection":
@@ -119,6 +141,7 @@ namespace HistoryForSpotify.ViewModels.Helpers
                 _designShellViewModel = new DummyShellViewModel();
                 _designHistoryListViewModel = new DummyHistoryListViewModel();
                 _designWaitForSpotifyViewModel = new DummyWaitForSpotifyViewModel();
+                _designMenuViewModel = new DummyMenuViewModel();
             }
             else
             {
@@ -136,6 +159,7 @@ namespace HistoryForSpotify.ViewModels.Helpers
                 _shellViewModel = new ShellViewModel(_log, _audioService);
                 _historyListViewModel = new HistoryListViewModel(_log, _audioService, _historyItemPersister, _saveFolder);
                 _waitForSpotifyViewModel = new WaitForSpotifyViewModel(_log);
+                _menuViewModel = new MenuViewModel();
             }
         }
 
