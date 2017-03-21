@@ -13,10 +13,10 @@
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"        
-        Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         d:DataContext="{Binding DesignShellViewModel, Source={StaticResource ViewModelLocator}}"
-        DataContext="{Binding ShellViewModel, Source={StaticResource ViewModelLocator}}">
+        DataContext="{Binding ShellViewModel, Source={StaticResource ViewModelLocator}}"
+        Background="{DynamicResource MaterialDesignPaper}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />

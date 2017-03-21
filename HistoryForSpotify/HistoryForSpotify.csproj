@@ -83,6 +83,10 @@
     <Compile Include="Views\WaitForSpotifyView.xaml.cs">
       <DependentUpon>WaitForSpotifyView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Resources\Styles\MaterialDesignTheme.Historify.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Shell.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
